@@ -1,0 +1,23 @@
+Project:
+    home:
+        ☐ Logo 디자인
+        ☐ Search Bar 디자인
+        ☐ Login Form 디자인
+        ☐ Sign Form 디자인
+        ☐ User Profile 디자인
+        ☐ Quicke Menu 디자인
+            ☐ Book Icon
+            ☐ Editor Icon
+            ☐ Etc.. Icon
+    viewer:
+        ☐ 상단 Menu 디자인
+        ☐ Header 디자인
+        ☐ Navigation 디자인
+        ☐ Search 디자인
+        ☐ Writing Board 디자인
+    editor:
+        ☐ 상단 Menu 디자인
+        ☐ Composite 디자인(아이콘) 텍스트, 디자인...
+        ☐ Board 디자인
+        ☐ Writing Object 디자인(Board 내의 수정가능한 콘텐츠)
+        ✘ Writing Object 우클릭시 나타나는 메뉴 디자인 @cancelled(19-10-11 15:34)

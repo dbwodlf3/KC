@@ -1,0 +1,60 @@
+#canvas{
+    position:absolute;  
+}
+
+/*
+containers
+*/
+.editor_container{
+    display:flex;
+    flex-flow: column;
+    min-height:100%;
+    margin-left:10%;
+    margin-right:10%;
+}
+
+.menu{
+    height:auto;
+    margin-left:10px;
+    margin-right:10px;
+    margin-top:10px;
+    position:sticky;
+    background-color:white;
+    top:0;
+    z-index:100;
+}
+
+.header_menu{
+    display:flex;
+    flex-flow: row;
+}
+
+.editorMenu{
+    margin:0;
+}
+
+/*etc...*/
+
+.header_logo{
+    flex-grow:1;
+}
+.header_name{
+    flex-grow:10;
+}
+.header_post{
+    flex-grow:1;
+}
+
+.title{
+    height:100px;
+    margin-left:10px;
+    margin-right:10px;
+    margin-top:10px;
+}
+
+#main_text{
+    flex-grow:1;
+    margin-left:10px;
+    margin-right:10px;
+    margin-top:10px;
+}
