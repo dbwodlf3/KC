@@ -1,67 +1,6 @@
 (function () {
     'use strict';
 
-    /**
-     *
-     */
-    function quickMenu(type){
-        var element = document.createElement("div");
-        var table = document.createElement("table");
-        var row = document.createElement("tr");
-
-        element.setAttribute("id", "quick_menu");
-        element.setAttribute("class", "text_quick_menu");
-        element.addEventListener("foucsout", removeQuickMenu);
-
-        table.setAttribute("id", "text_object_quick_menu");
-
-        makeItem(row, "스타일");
-        makeItem(row, "크기");
-        makeItem(row, "굵게");
-        makeItem(row, "밑줄");
-        makeItem(row, "기울기");
-        makeItem(row, "글자색");
-        
-        table.appendChild(row);
-        element.appendChild(table);
-
-        return element
-    }
-
-    //events
-    /**
-     * 
-     * @param {FocusEvent} event 
-     */
-    function removeQuickMenu(event){
-        event.currentTarget.remove();
-        console.log(remove);
-    }
-
-    //helper Function
-    /**
-     * 
-     * @param {HTMLElement} parent 
-     * @param {String} str 
-     * @param {function} callback
-     */
-    function makeItem(parent, str){
-        var element = document.createElement("td");
-        element.setAttribute("contenteditable","true");
-        element.setAttribute("class","quick_menu_item");
-        element.innerHTML = str;
-        parent.appendChild(element);
-        return true
-    }
-
-        //text Quick Menu가 나타나야할 때는 다음과 같다.
-        //해당 textObject을 클릭을 했을 때.
-        //Text Quick Menu가 사라졌을 때는 다음과 같다.
-        //해당 textObject에서 벗어났을 때.
-        //1. 해당 textObject에서 focustout을 할 때.
-        //드래그한 값에 적용할 때.
-        //전체 상자에 적용할 때.
-
     // global Values
 
     var selectedObject;
@@ -72,6 +11,16 @@
         mouseX = ev.clientX + window.scrollX;
         mouseY = ev.clientY + window.scrollY;
     };
+
+    // static HTML
+    var textQuickMenu = `
+<div class="drop_menu_wrapper"><div class="drop_menu">스타일<div class="drop_item_wrapper"><div class="drop_item">흐하하</div></div><span class="expand_open"></span></div></div>
+<div class="drop_menu_wrapper"><div class="drop_menu">폰트<span class="expand_open"></span></div></div>
+<div class="drop_menu_wrapper"><div class="drop_menu">크기<span class="expand_open"></span></div></div>
+<div class="drop_menu_wrapper"><div class="drop_menu">색<span class="expand_open"></span></div></div>
+<div class="drop_menu_wrapper"><div class="drop_menu">밑줄</div></div>
+<div class="drop_menu_wrapper"><div class="drop_menu">굵게</div></div>
+`;
 
 
     // Object
@@ -94,37 +43,17 @@
         var writingElement = document.createElement("div");
         writingElement.setAttribute("draggable", "true");
         writingElement.setAttribute("class", "writing_object");
-
-        //events
-        //Quick Menu create
-        writingElement.addEventListener("focusin",(ev)=>{
-            if(!(document.getElementById("quick_menu"))){
-                var myQuickMenu = quickMenu();
-                ev.currentTarget.appendChild(myQuickMenu);
-
-                myQuickMenu.style.left = writingElement.getBoundingClientRect().x;
-                myQuickMenu.style.top = writingElement.getBoundingClientRect().y + window.scrollY -50;
-            }
-        });
-        //Quick Menu remove
-        writingElement.addEventListener("focusout",(ev)=>{
-            var textQuickMenu = document.getElementById("quick_menu");
-            if( textQuickMenu.parentElement != ev.currentTarget){
-                textQuickMenu.remove();
-            }
-        });
-        //위치 교환 drag
+        //위치 교환 drag&drop
         writingElement.addEventListener("dragstart",(ev)=>{
             selectedObject = ev.currentTarget;
             ev.dataTransfer.setData("text", null);
         });
-        //위치 교한 drop
         writingElement.addEventListener("drop", (ev)=>{
             ev.preventDefault();
             insertingObject(selectedObject, ev.target.parentElement.parentElement);
         });
 
-        return Object.assign(writingElement,canvasObject)
+        return Object.assign(writingElement,canvasObject,{objType:"writingObject"})
     }
 
     /**
@@ -138,7 +67,27 @@
         element.setAttribute("class", "text_object");
         element.setAttribute("contentEditable", "true");
         wrapper.appendChild(element);
+
+        //상단 메뉴 Event
+        element.addEventListener("focusin", (ev)=>{
+            var headerOptionMenu = document.getElementById("header_option_menu");
+            headerOptionMenu.innerHTML = textQuickMenu;
+            headerOptionMenu.childNodes.forEach((item)=>{item.addEventListener("click",quickMenuToggle);});
+            console.log(headerOptionMenu);
+        });
+
         return element
+    }
+
+    //
+    // Events Function
+    //
+    /**
+     * 
+     * @param {MouseEvent} event 
+     */
+    function quickMenuToggle(event){
+        event.currentTarget.querySelector(".drop_item_wrapper").classList.toggle("drop_item_wrapper_toggle");
     }
     function insert(element){
         document.getElementById("main_text").appendChild(element.parentElement);
@@ -283,8 +232,5 @@
             //postingElement.href = jsonDonwload(posting())
         };
     };
-
-    var a = document.createElement("div");
-    a.innerHTML = "흐므으으으";
 
 }());

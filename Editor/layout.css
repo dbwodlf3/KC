@@ -15,8 +15,6 @@ containers
 
 .menu{
     height:auto;
-    margin-left:10px;
-    margin-right:10px;
     margin-top:10px;
     position:sticky;
     background-color:white;
@@ -24,14 +22,82 @@ containers
     z-index:100;
 }
 
+/*
+headerMenu
+*/
 .header_menu{
     display:flex;
     flex-flow: row;
+    border-bottom:1px solid skyblue;
 }
 
-.editorMenu{
+
+/*
+editorMenu
+*/
+
+.editor_menu{
+    display:flex;
+    flex-flow: row;
+    min-height:44px;
+    border-bottom:1px solid skyblue;
     margin:0;
 }
+
+.editor_menu_wrapper{
+    display:flex;
+    align-self:center;
+    justify-content:center;
+}
+
+.icon_menu{
+    color:black;
+}
+
+/*
+header_option_menu
+*/
+
+#header_option_menu{
+    display:flex;
+    flex-direction:row;
+    height:auto;
+    width:auto;
+}
+
+.drop_menu_wrapper{
+    display:flex;
+    position:relative;
+    height:auto;
+    border-right: 1px solid skyblue;
+}
+
+.drop_menu{
+    align-self:center;
+    justify-content:center;
+}
+
+.drop_item_wrapper{
+    display:none;
+    position:absolute;
+    width:100%;
+    z-index:999;
+    top:18;
+}
+
+.drop_item_wrapper_toggle{
+    display:block;
+}
+
+
+.drop_item{
+    height:18px;
+    background-color:white;
+    z-index:999;
+    border:1px solid skyblue;
+    text-align:left;
+}
+
 
 /*etc...*/
 

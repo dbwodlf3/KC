@@ -1,5 +1,3 @@
-import * as quickMenu from './quickMenu'
-
 // global Values
 
 var selectedObject;
@@ -12,6 +10,16 @@ window.onmousemove = (ev)=>{
     mouseX = ev.clientX + window.scrollX;
     mouseY = ev.clientY + window.scrollY
 }
+
+// static HTML
+var textQuickMenu = `
+<div class="drop_menu_wrapper"><div class="drop_menu">스타일<div class="drop_item_wrapper"><div class="drop_item">흐하하</div></div><span class="expand_open"></span></div></div>
+<div class="drop_menu_wrapper"><div class="drop_menu">폰트<span class="expand_open"></span></div></div>
+<div class="drop_menu_wrapper"><div class="drop_menu">크기<span class="expand_open"></span></div></div>
+<div class="drop_menu_wrapper"><div class="drop_menu">색<span class="expand_open"></span></div></div>
+<div class="drop_menu_wrapper"><div class="drop_menu">밑줄</div></div>
+<div class="drop_menu_wrapper"><div class="drop_menu">굵게</div></div>
+`
 
 
 // Object
@@ -26,7 +34,6 @@ const Page ={
     Type:"Page",
     ID:"" //contents 내용을 sha-1로 계산함.
 }
-
 
 // Factory Function
 
@@ -44,7 +51,6 @@ function mainBoardObject(){
     containerElement.setAttribute("class", "editor_container")
     titleElement.setAttribute("class", "title")
     mainTextObject.setAttribute("id", "main_text")
-
 }
 
 /**
@@ -54,37 +60,17 @@ function writingObject(){
     var writingElement = document.createElement("div")
     writingElement.setAttribute("draggable", "true")
     writingElement.setAttribute("class", "writing_object")
-
-    //events
-    //Quick Menu create
-    writingElement.addEventListener("focusin",(ev)=>{
-        if(!(document.getElementById("quick_menu"))){
-            var myQuickMenu = quickMenu.quickMenu()
-            ev.currentTarget.appendChild(myQuickMenu)
-
-            myQuickMenu.style.left = writingElement.getBoundingClientRect().x
-            myQuickMenu.style.top = writingElement.getBoundingClientRect().y + window.scrollY -50
-        }
-    })
-    //Quick Menu remove
-    writingElement.addEventListener("focusout",(ev)=>{
-        var textQuickMenu = document.getElementById("quick_menu")
-        if( textQuickMenu.parentElement != ev.currentTarget){
-            textQuickMenu.remove()
-        }
-    })
-    //위치 교환 drag
+    //위치 교환 drag&drop
     writingElement.addEventListener("dragstart",(ev)=>{
         selectedObject = ev.currentTarget
         ev.dataTransfer.setData("text", null)
     })
-    //위치 교한 drop
     writingElement.addEventListener("drop", (ev)=>{
         ev.preventDefault();
         insertingObject(selectedObject, ev.target.parentElement.parentElement)
     })
 
-    return Object.assign(writingElement,canvasObject)
+    return Object.assign(writingElement,canvasObject,{objType:"writingObject"})
 }
 
 /**
@@ -98,11 +84,32 @@ function textObject(){
     element.setAttribute("class", "text_object")
     element.setAttribute("contentEditable", "true")
     wrapper.appendChild(element)
+
+    //상단 메뉴 Event
+    element.addEventListener("focusin", (ev)=>{
+        var headerOptionMenu = document.getElementById("header_option_menu")
+        headerOptionMenu.innerHTML = textQuickMenu
+        headerOptionMenu.childNodes.forEach((item)=>{item.addEventListener("click",quickMenuToggle)})
+        console.log(headerOptionMenu)
+    })
+
     return element
 }
 
+//
+// Events Function
+//
+/**
+ * 
+ * @param {MouseEvent} event 
+ */
+function quickMenuToggle(event){
+    event.currentTarget.querySelector(".drop_item_wrapper").classList.toggle("drop_item_wrapper_toggle")
+}
 
+//
 // Utility Function
+//
 function hasClass(element, className) {
     return (' ' + element.className + ' ').indexOf(' ' + className+ ' ') > -1;
 }
@@ -249,6 +256,3 @@ window.onload=()=>{
         //postingElement.href = jsonDonwload(posting())
     }
 }
-
-var a = document.createElement("div")
-a.innerHTML = "흐므으으으"
