@@ -83,14 +83,14 @@
     // Events Function
     //
     /**
-     * 
-     * @param {MouseEvent} event 
+     *
+     * @param {MouseEvent} event
      */
     function quickMenuToggle(event){
         event.currentTarget.querySelector(".drop_item_wrapper").classList.toggle("drop_item_wrapper_toggle");
     }
     function insert(element){
-        document.getElementById("main_text").appendChild(element.parentElement);
+        document.getElementById("main_text").appendChild(element);
     }
 
     /**

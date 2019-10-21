@@ -96,12 +96,34 @@ function textObject(){
     return element
 }
 
+/**
+ * @constructor
+ */
+function imgObject(){
+    var wrapper = writingObject()
+    var element = document.createElement("div")
+    var pElement = document.createElement("div")
+
+    element.setAttribute("class", "img_object")
+    wrapper.appendChild(element)
+
+    //상단 메뉴 Event
+    element.addEventListener("focusin", (ev)=>{
+        var headerOptionMenu = document.getElementById("header_option_menu")
+        headerOptionMenu.innerHTML = textQuickMenu
+        headerOptionMenu.childNodes.forEach((item)=>{item.addEventListener("click",quickMenuToggle)})
+        console.log(headerOptionMenu)
+    })
+
+    return element
+}
+
 //
 // Events Function
 //
 /**
- * 
- * @param {MouseEvent} event 
+ *
+ * @param {MouseEvent} event
  */
 function quickMenuToggle(event){
     event.currentTarget.querySelector(".drop_item_wrapper").classList.toggle("drop_item_wrapper_toggle")
@@ -114,7 +136,7 @@ function hasClass(element, className) {
     return (' ' + element.className + ' ').indexOf(' ' + className+ ' ') > -1;
 }
 function insert(element){
-    document.getElementById("main_text").appendChild(element.parentElement)
+    document.getElementById("main_text").appendChild(element)
 }
 
 /**
