@@ -106,7 +106,8 @@ const Books = {
     Index:"", // index.html. 해당 Book의 index 페이지.
     Type:"", // Page인지 Book 인지 구분 해 주는 문자열.
     Date:"", // 해당 Book을 작성한 일자.
-    Page:[] //순서 있는 배열. page에는 Books Object도 들어올 수 있음.
+    Page:[], //순서 있는 배열. page에는 Books Object도 들어올 수 있음.
+    ID:"" //ID값. SHA-1 알고리즘으로 생성
 }
 
 const Page ={
@@ -206,9 +207,5 @@ function findData(id, jsonData){
         }
     }
 }
-
-
-
 //test code
-
 loadBook(Data)

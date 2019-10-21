@@ -145,12 +145,11 @@ async function sha1(str) {
 async function posting(){
     var boardWriting = Object.assign({}, Page)
     var nowTime = new Date();
-    console.log(nowTime.getTime())
     boardWriting.Date = nowTime.getTime();
     boardWriting.Title = document.getElementsByClassName("title")[0].outerHTML
     boardWriting.Contents = document.getElementById("main_text").outerHTML
     await sha1(boardWriting.Contents).then((x)=>{boardWriting.ID = x})
-    
+
     return boardWriting
 }
 
@@ -248,11 +247,12 @@ window.onload=()=>{
     insert(e)
     //posting test
     var postingElement = document.getElementById("posting")
+    console.log(postingElement)
     postingElement.download = "posting.json";
     postingElement.onclick = (ev)=>{
         posting().then((x)=>{
             postingElement.href = jsonDonwload(x)
         })
-        //postingElement.href = jsonDonwload(posting())
+        postingElement.href = jsonDonwload(posting())
     }
 }

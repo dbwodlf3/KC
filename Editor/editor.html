@@ -1,33 +1,76 @@
 <html>
     <head>
-    <script src="./compiled.js"></script>
-    <link rel="stylesheet" type="text/css" href="./normalize.css">
-    <link rel="stylesheet" type="text/css" href="./index.css">
-    <link rel="stylesheet" type="text/css" href="./layout.css">
+        <script src="./compiled.js"></script>
+        <link rel="stylesheet" type="text/css" href="./normalize.css" />
+        <link rel="stylesheet" type="text/css" href="./index.css" />
+        <link rel="stylesheet" type="text/css" href="./layout.css" />
+        <link rel="stylesheet" type="text/css" href="../Editor/editor.css" />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
     </head>
+
     <canvas id="canvas"></canvas>
     <div class="menu">
         <div class="header_menu">
-            <div class="header_logo">Logo</div>
-            <div class="header_name"></div>
-            <div class="header_post"> <a id="posting">발행</a></div>
+            <div class="header_logo">
+                <a href="#"><img src="../img/logo.png"/></a>
+            </div>
+            <div class="header_name">EDITOR</div>
+            <div class="goto">
+                <a href="../Viewer/viewer.html">
+                    <i class="material-icons">swap_horiz</i>
+                </a>
+            </div>
+            <div class="header_post">
+                <a id="posting">
+                    <button class="posting">
+                        <i class="material-icons">done_outline</i>
+                    </button>
+                </a>
+            </div>
         </div>
-        <div class="editor_menu">
-                <div class="editor_menu_wrapper"><div class="icon_menu">텍스트</div></div>
-                <div class="editor_menu_wrapper"><div class="icon_menu">이미지</div></div>
-        </div>
-        <div id="header_option_menu">
-            <div class="drop_menu_wrapper"><div class="drop_menu">스타일<div class="drop_item_wrapper">드랍메뉴<div class="drop_item"></div></div><span class="expand_open"></span></div></div>
-            <div class="drop_menu_wrapper"><div class="drop_menu">폰트<span class="expand_open"></span></div></div>
-            <div class="drop_menu_wrapper"><div class="drop_menu">크기<span class="expand_open"></span></div></div>
-            <div class="drop_menu_wrapper"><div class="drop_menu">색<span class="expand_open"></span></div></div>
-            <div class="drop_menu_wrapper"><div class="drop_menu">밑줄</div></div>
-            <div class="drop_menu_wrapper"><div class="drop_menu">굵게</div></div>
-        </div>
+    <div class="editor_menu">
+    <div class="editor_menu_wrapper">
+    <div class="icon_menu">
+    <i class="material-icons">
+    format_size
+    </i>
+    </div>
+    </div>
+    <div class="editor_menu_wrapper">
+    <div class="icon_menu">
+    <i class="material-icons">
+    add_photo_alternate
+    </i>
+    </div>
+    </div>
+    </div>
+    <div id="header_option_menu">
+    <div class="drop_menu_wrapper">
+    <div class="drop_menu">
+    스타일<span class="expand_open"></span>
+    <div class="drop_item_wrapper">
+    드랍메뉴
+    <div class="drop_item"></div>
+    </div>
+
+    </div>
+    </div>
+    <div class="drop_menu_wrapper">
+    <div class="drop_menu">폰트<span class="expand_open"></span></div>
+    </div>
+    <div class="drop_menu_wrapper">
+    <div class="drop_menu">크기<span class="expand_open"></span></div>
+    </div>
+    <div class="drop_menu_wrapper">
+    <div class="drop_menu">색<span class="expand_open"></span></div>
+    </div>
+    <div class="drop_menu_wrapper"><div class="drop_menu">밑줄</div></div>
+    <div class="drop_menu_wrapper"><div class="drop_menu">굵게</div></div>
+    </div>
     </div>
     <div class="editor_container">
         <div class="title" contenteditable="true">제목</div>
-        <div id="main_text">
-        </div>
+        <div id="main_text"></div>
     </div>
 </html>
