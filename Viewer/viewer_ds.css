@@ -1,0 +1,90 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+.viewer_grid_layout {
+  display: grid;
+  height: 100%;
+  grid-template-rows: 50px 100px 1fr 1fr;
+  grid-template-columns: 300px auto;
+  grid-template-areas:
+    "m m m m m m m"
+    "s h h h h h h"
+    "s b b b b b b"
+    "s b b b b b b";
+}
+
+.min_logo img {
+  position: absolute;
+  height: 15px;
+  top: 90px;
+  right: 5%;
+}
+
+.viewer_menu {
+  grid-area: m;
+  background: #8686864a;
+  border-bottom: 1px solid #6b6b6b4a;
+  box-shadow: 0px 3px 5px rgba(225, 225, 225, 0.5);
+}
+
+.viewer_logo {
+  display: inline-block;
+}
+
+.viewer_logo img {
+  margin: 10px;
+  padding-top: 5;
+  height: 20px;
+}
+
+.viewer_name {
+  display: inline-block;
+}
+
+.viewer_name span {
+  font-size: 20px;
+  vertical-align: 13px;
+  margin-left: 20px;
+  color: #666666;
+}
+
+.goto {
+  display: inline-block;
+  position: absolute;
+  right: 30px;
+  top: 5px;
+}
+
+.goto i {
+  font-size: 40px;
+  color: #666666;
+}
+
+.viewer_side_nav {
+  grid-area: s;
+  border-right: 1px solid #6b6b6b4a;
+  min-width: 300px;
+  user-select: none;
+  padding: 10px;
+}
+
+.viewer_header {
+  grid-area: h;
+  border-bottom: 1px solid #6b6b6b4a;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 30px 0px;
+  margin: 0 20%;
+}
+
+.viewer_board {
+  grid-area: b;
+  padding: 20px;
+  margin: 0 20%;
+}

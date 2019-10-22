@@ -9,7 +9,7 @@ const context = {};
 //test Data
 let Data = {
     "BookName":"김치를 맛있게 만들어 먹기",
-    "Index":"<div class=\"title\"><h1>나는 김치 마스터!</h1></div>",
+    "Index":"<div class=\"title\"><h1>김치를 어떻게 만들어 먹을까?</h1><h2>북커버입니다.</h2></div>",
     "Page":[
         {
             "BookName":"김치를 만드는 방법",
@@ -162,6 +162,10 @@ function changePage(event){
     }else{contents.innerHTML = contentData.Contents}
 }
 
+/**
+ *
+ * @param {Books} Books
+ */
 //Helper Function
 function makeSideNav(Books){
     var sideElement;
@@ -207,5 +211,6 @@ function findData(id, jsonData){
         }
     }
 }
+
 //test code
 loadBook(Data)

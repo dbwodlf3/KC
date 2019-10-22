@@ -147,7 +147,7 @@ function insertingObject(a, b){
     var target = document.getElementById("main_text")
     var placeHolderA = document.createElement("span")
     var placeHolderB = document.createElement("span")
-    
+
     target.insertBefore(placeHolderA, a)
     target.insertBefore(placeHolderB, b)
 
